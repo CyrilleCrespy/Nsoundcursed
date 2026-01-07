@@ -1,4 +1,4 @@
-// Nsoundboard, sound alert manager for Ncurses
+// Nsoundcursed, sound alert manager for Ncurses
 // SPDX-License-Identifier: GPL-2.0-only
 // Copyright (C) 2025 Cyrille Crespy
 
@@ -34,7 +34,7 @@ int main()
 void menu()
 {
 	clear() ;
-	mvprintw(1,2,"Bienvenue dans Nsoundboard\n") ;
+	mvprintw(1,2,"Bienvenue dans Nsoundcursed\n") ;
 	mvprintw(2,2,"1) Liste des sons\n") ;
 	mvprintw(3,2,"2) Aide\n") ;
 	mvprintw(4,2,"3) License\n") ;

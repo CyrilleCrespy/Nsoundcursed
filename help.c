@@ -1,4 +1,4 @@
-// Nsoundboard, sound alert manager for Ncurses
+// Nsoundcursed, sound alert manager for Ncurses
 // SPDX-License-Identifier: GLP-2.0-only
 // Copyright (C) 2025 Cyrille Crespy
 
