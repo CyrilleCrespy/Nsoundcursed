@@ -5,6 +5,7 @@
 #include <limits.h>
 #include <curses.h>
 #include <menu.h>
+#include <dirent.h>
 
 void parseConfig(char *home) ;
 int lineAnalyzer(char varName[100], char value[250]) ;
@@ -12,6 +13,7 @@ void configFromshare(char config[FILENAME_MAX]) ;
 void menu() ;
 void eraseSound(int choices, int selected) ;
 void soundlist() ;
+int checkIfaudio(struct dirent *dir_s) ;
 void soundlistLoop(int choices) ;
 void printSoundlist(int choices, int selected);
 void playSound(int selected) ;

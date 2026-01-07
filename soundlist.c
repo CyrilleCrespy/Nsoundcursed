@@ -30,6 +30,7 @@ void soundlist()
 	mvprintw(2,2,"Répertoire analysé : %s\n", folder) ;
 
         int i = -1 ;
+	int nbFiles = 0 ;
         DIR *dir ;
         struct dirent *dir_s ;
 
@@ -45,10 +46,20 @@ void soundlist()
                         }
                         else
                         {
-                                items = malloc(sizeof(files[i-1])) ;
-                                items[i-1] = new_item(files[i-1],files[i-1]) ;
-                                snprintf(files[i-1],sizeof(files[i-1]),dir_s->d_name) ;
-                                i ++ ;
+                                int isAudio = checkIfaudio(dir_s) ;
+				if (isAudio == 0) 
+				{
+					items = malloc(sizeof(files[nbFiles])) ;
+                               		items[nbFiles] = new_item(files[nbFiles],files[nbFiles]) ;
+                                	snprintf(files[nbFiles],sizeof(files[nbFiles]),dir_s->d_name) ;
+                                	i ++ ;
+					nbFiles ++ ;
+				}
+				else
+				{
+					i++ ;
+					continue ;
+				}
                         }
                 }
         }
@@ -60,12 +71,56 @@ void soundlist()
         closedir(dir) ;
 
 
-	printSoundlist(i,1) ;
-	soundlistLoop(i) ;
+	printSoundlist(nbFiles,1) ;
+	soundlistLoop(nbFiles) ;
 
 	refresh() ;
 
 	getch() ;
+}
+
+int checkIfaudio(struct dirent *dir_s)
+{
+	//We check what is the magic number of a file to determine its mime.
+	//Then, we can decide wether to print it on the list or not.
+	char *file ;
+	file = malloc(sizeof(folder) + sizeof(dir_s->d_name) + sizeof(char)) ;
+	snprintf(file, sizeof(folder) + sizeof(dir_s->d_name) + sizeof(char), "%s/%s", folder, dir_s->d_name) ;
+	magic_t mime = magic_open(MAGIC_MIME_TYPE) ;
+	int isLoadOK = magic_load(mime, NULL) ;
+	if (isLoadOK != 0)
+	{
+		clear() ;
+		endwin() ;
+		printf("Loading the magic numbers failed.\n") ;
+		exit(0) ;
+	}
+	const char *type = magic_file(mime, file) ;
+	if(mime == NULL)
+	{
+		clear() ;
+		endwin() ;
+		printf("Erreur, pas de mime MIME détecté pour %s.\n", file) ;
+	}
+
+	// MIME-mimes are retrieved as strings such like audio/mpeg.
+	// We want to determine if the first part is audio.
+	const char *separator = "/" ;
+	const char *token ;
+
+	token = strtok(type, separator) ;
+
+	if (strcmp(token, "audio") == 0)
+	{
+		// This is an audio file (apparently). We tell that to the function that print the list.
+		// Because we DO want audio files in the program, this is returned as no error.
+		return 0 ;
+	}
+	else	
+	{
+		// Non-blocking error, we will just disregard that file.
+		return 1 ;
+	}
 }
 
 void soundlistLoop(int choices)
@@ -81,7 +136,7 @@ void soundlistLoop(int choices)
 			case KEY_UP :
 				if (selected == 1)
 				{
-					selected = choices - 1 ;
+					selected = choices ;
 				}
 				else
 				{
@@ -89,7 +144,7 @@ void soundlistLoop(int choices)
 				}
 				break ;
 			case KEY_DOWN :
-				if (selected == choices - 1)
+				if (selected == choices)
 				{
 					selected = 1 ;
 				}

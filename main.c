@@ -10,6 +10,7 @@
 #include <locale.h>
 #include <unistd.h>
 #include <fcntl.h>
+#include <magic.h>
 #include "configuration.c"
 #include "soundlist.c"
 #include "help.c"
