@@ -233,7 +233,7 @@ void playSound(int selected)
 	char *audioTool ;
 
 	audioTool = malloc(sizeof(char) * 50) ;
-	sprintf(audioTool, "mpg123") ;
+	sprintf(audioTool, "cvlc") ;
 
 	if (proc == -1)
 	{
@@ -251,7 +251,7 @@ void playSound(int selected)
 		dup2(out, 1) ;
 		dup2(out, 2) ;
 		close(out) ;
-		execlp(audioTool, audioTool, file, (char *)NULL) ;	
+		execlp(audioTool, audioTool, file, "--no-loop", NULL) ;	
 	}
 }
 
