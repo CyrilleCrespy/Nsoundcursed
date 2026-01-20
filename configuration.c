@@ -69,3 +69,9 @@ void configFromshare(char config[FILENAME_MAX])
         fclose(fichier1) ;
         fclose(fichier2) ;
 }
+
+void defaultConfig(char element) // In case the use is using the paramater default with any option,
+				 // we wanna use a state that was defined at compile time.
+				 // (compile time which also has default value, as you can see in Makefile)
+{
+}

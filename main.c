@@ -35,10 +35,10 @@ int main()
 void menu()
 {
 	clear() ;
-	mvprintw(1,2,"Bienvenue dans Nsoundcursed\n") ;
-	mvprintw(2,2,"1) Liste des sons\n") ;
-	mvprintw(3,2,"2) Aide\n") ;
-	mvprintw(4,2,"3) License\n") ;
+	mvprintw(1,3,"Bienvenue dans Nsoundcursed\n") ;
+	mvprintw(2,3,"1) Liste des sons\n") ;
+	mvprintw(3,3,"2) Aide\n") ;
+	mvprintw(4,3,"3) License\n") ;
 
 	wrefresh(win) ;
 

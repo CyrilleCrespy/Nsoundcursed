@@ -10,6 +10,7 @@
 void parseConfig(char *home) ;
 int lineAnalyzer(char varName[100], char value[250]) ;
 void configFromshare(char config[FILENAME_MAX]) ;
+void defaultConfig(char element) ;
 void menu() ;
 void eraseSound(int choices, int selected) ;
 void soundlist() ;
@@ -34,6 +35,8 @@ MENU *myMenu ;
 typedef struct
 {
 	char *folder ;
+	char playSound[10] ;
+	char goBack[1] ;
 } Configuration ;
 
 Configuration configuration ;

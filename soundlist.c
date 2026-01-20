@@ -26,8 +26,8 @@ void soundlist()
 		snprintf(folder, sizeof(char) * FILENAME_MAX, "%s", configuration.folder) ;
 	}
 	
-	mvprintw(1,2,"Liste des sons (+ pour ajouter)\n") ;
-	mvprintw(2,2,"Répertoire analysé : %s\n", folder) ;
+	mvprintw(1,3,"Liste des sons (+ pour ajouter)\n") ;
+	mvprintw(2,3,"Répertoire analysé : %s\n", folder) ;
 
         int i = -1 ;
 	int nbFiles = 0 ;
@@ -212,12 +212,12 @@ void printSoundlist(int choices, int selected)
 		if(i == selected) //Make the current selected choice visible.
 		{
 			attron(A_BOLD | A_UNDERLINE | A_DIM | A_REVERSE) ;
-			mvprintw(i + 2, 2, "%d) %s Erase (e)", i, files[i - 1]) ;
+			mvprintw(i + 2, 3, "%d) %s Erase (e)", i, files[i - 1]) ;
 		}
 		else
 		{
 			attroff(A_BOLD | A_UNDERLINE | A_DIM | A_REVERSE) ;
-			mvprintw(i + 2, 2, "%d) %s", i, files[i - 1]) ;
+			mvprintw(i + 2, 3, "%d) %s", i, files[i - 1]) ;
 		}
 		//The first lines are taken permanently so we need to draw the menu starting after that.
 		refresh() ;
