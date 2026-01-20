@@ -3,6 +3,7 @@
 // Copyright (C) 2025 Cyrille Crespy
 
 #include "main.h"
+#include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -11,6 +12,7 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <magic.h>
+#include "testSystem.c"
 #include "configuration.c"
 #include "soundlist.c"
 #include "help.c"
@@ -18,6 +20,13 @@
 
 int main()
 {
+	int test = testSystem() ;
+	if (test != 0)
+	{
+		printf("%d \n", test) ;
+		printf("Fermeture de nsoundcursed : %s.\n", strerror(errno)) ;
+		return -1 ;
+	}
 	noecho() ;
 	cbreak() ;
 	initscr() ;

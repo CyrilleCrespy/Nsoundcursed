@@ -230,19 +230,13 @@ void playSound(int selected)
 {
 	char *file ;
 	pid_t proc = fork() ;
-	char *audioTool ;
 
-	audioTool = malloc(sizeof(char) * 50) ;
-	sprintf(audioTool, "cvlc") ;
-
-	if (proc == -1)
+	if (proc < 0)
 	{
-		perror("Fork failed.\n") ;
-		exit(0) ;
+		printf("Fork failed : %s.\n", strerror(errno)) ;
 	}
 	else if (proc == 0)
 	{
-		setsid() ;
 		file = malloc(sizeof(folder) + sizeof(files[selected - 1]) + 1) ;
 		sprintf(file, "%s/%s", folder, files[selected - 1]) ;
 	
@@ -251,7 +245,7 @@ void playSound(int selected)
 		dup2(out, 1) ;
 		dup2(out, 2) ;
 		close(out) ;
-		execlp(audioTool, audioTool, file, "--no-loop", NULL) ;	
+		execlp("cvlc", "cvlc", file, "--no-loop", "--quiet", NULL) ;	
 	}
 }
 

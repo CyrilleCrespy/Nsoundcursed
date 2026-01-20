@@ -7,6 +7,7 @@
 #include <menu.h>
 #include <dirent.h>
 
+int testSystem() ;
 void parseConfig(char *home) ;
 int lineAnalyzer(char varName[100], char value[250]) ;
 void configFromshare(char config[FILENAME_MAX]) ;
