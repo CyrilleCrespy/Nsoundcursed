@@ -1,0 +1,16 @@
+nsoundcursed is a tool made on my free time, mostly for my personal benefit.
+It is protected by the GPL 2.0 licence and only that specific version, as others files clearly states.
+
+		(C) 2025 Cyrille Crespy 
+		
+The goal is this software is to provide a lightweight and terminal based tool,
+to launch sounds as requested by the user, while providing a list of all songs available.
+
+It uses ncurses (with the menu library) for the display, vlc (in the form of cvlc)
+to launch the audio and a standard C library implementation (it was tested
+with glibc only at current time), please feel free to try with musl or whatever.
+The library libmagic, usually provided by file, is also a request.
+
+Currently, the project relies on the GNU toolchain, with make and gcc.
+It was tested only on Linux. Again, if you wanna try to test or adapt it,
+wether for any BSD, Hurd or whatever, then feel free to contribute.
