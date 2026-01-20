@@ -1,3 +1,7 @@
+// Nsoundcursed, sound alert manager for Ncurses
+// SPDX-License-Identifier: GPL-2.0-only
+// Copyright (C) 2025 Cyrille Crespy
+
 int testSystem()
 {
 	pid_t proc = fork() ;
