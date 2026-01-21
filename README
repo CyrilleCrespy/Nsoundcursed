@@ -11,6 +11,9 @@ to launch the audio and a standard C library implementation (it was tested
 with glibc only at current time), please feel free to try with musl or whatever.
 The library libmagic, usually provided by file, is also a request.
 
+Translations use gettext tools. I personnally took great advantage of this document
+to make it work : https://www.labri.fr/perso/fleury/posts/programming/a-quick-gettext-tutorial.html
+
 Currently, the project relies on the GNU toolchain, with make and gcc.
 It was tested only on Linux. Again, if you wanna try to test or adapt it,
 wether for any BSD, Hurd or whatever, then feel free to contribute.
