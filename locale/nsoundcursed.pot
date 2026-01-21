@@ -1,0 +1,99 @@
+# Nsoundcursed, sound alert manager for Ncurses
+# SPDX-License-Identifier: GPL-2.0-only
+# Copyright (C) 2025 Cyrille Crespy
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Nsoundcursed\n"
+"Report-Msgid-Bugs-To: cyrille_crespy@hotmail.com\n"
+"POT-Creation-Date: 2026-01-21 10:08+0100\n"
+"PO-Revision-Date: 2026-01-21 10:30+0100\n"
+"Last-Translator: Cyrille Crespy <cyrille_crespy@hotmail.com>\n"
+"Language-Team: Cyrille Crespy <cyrille_crespy@hotmail.com>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: main.c:28
+#, c-format
+msgid "Nsoundcursed will be closed : "
+msgstr ""
+
+#: main.c:60
+msgid "Welcome to Nsoundcursed\n"
+msgstr ""
+
+#: main.c:61
+msgid "1) Sound list\n"
+msgstr ""
+
+#: main.c:62
+msgid "2) Help me\n"
+msgstr ""
+
+#: main.c:63
+msgid "3) Licence\n"
+msgstr ""
+
+#: help.c:35
+msgid "1) First steps\n"
+msgstr ""
+
+#: help.c:36
+msgid "2) Configuration\n"
+msgstr ""
+
+#: help.c:44
+msgid ""
+"The main menu can be managed with numeric keyboard (or more generally with "
+"numbers close the different choices. Playlist can be piloted from arrow keys "
+"to move the selected choice, or with shortcuts for choices numeroted from 1 "
+"to 9. 0 allow to go back to the main menu, 'q' makes the application quits."
+msgstr ""
+
+#: help.c:53
+msgid ""
+"The file located in ~/.config/nsoundlist.conf is the foundation of this "
+"tool. It relies on a simple syntax : option=value. The application reads it "
+"at launch time. - folder defines the working directory where sounds to "
+"launch are. 1) default is automatically translated into ~/.config/"
+"nsoundconfig, by retrieving the $HOME value of the parent shell. 2) it can "
+"also be defined on which the user as reading rights."
+msgstr ""
+
+#: license.c:8
+msgid ""
+"Licence GPLv2.0, and only thio particular version, applies to this application. "
+"It is possible to read the text in its full extent by consulting the file COPYING, which must be provided "
+"when sharing this software, either as binary or as source code. Press any key to go back to main menu."
+msgstr ""
+
+#: soundlist.c:20
+msgid "Sound list (press + to add)\n"
+msgstr ""
+
+#: soundlist.c:21
+msgid "Checked folder : "
+msgstr ""
+
+#: soundlist.c:59
+msgid "Folder does not exist / is not reachable : "
+msgstr ""
+
+#: soundlist.c:86
+#, c-format
+msgid "Loading the magic number failed.\n"
+msgstr ""
+
+#: soundlist.c:94
+#, c-format
+msgid "No MIME type detected for the file : \n"
+msgstr ""
+
+#: testSystem.c:24
+#, c-format
+msgid "Either cvlc isn't available, either it's not in the PATH. \n"
+"Installing VLC in your packet manager may solve the problem."
+msgstr ""
