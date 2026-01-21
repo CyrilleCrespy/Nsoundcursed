@@ -5,10 +5,9 @@
 void license()
 {
 	clear() ;
-	printw("Cette application est soumise à la licence GPLv2.0 et uniquement à cette version. \
-Il est possible de consulter le texte en consultant le fichier COPYING, qui doit être fourni \
-lors de la transmission de ce logiciel, que ce soit sous forme binaire ou en code source. \
-Pressez une touche pour revenir au menu.") ;
+	printw(_("Licence GPLv2.0, and only thio particular version, applies to this application. \
+It is possible to read the text in its full extent by consulting the file COPYING, which must be provided \
+when sharing this software, either as binary or as source code. Press any key to go back to main menu.")) ;
 	wrefresh(win) ;
 	getch() ;
 	menu() ;

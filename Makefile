@@ -1,10 +1,13 @@
 CC=gcc
 CFLAGS=-Wall -Werror=all -pedantic -O3 -g -lcurses -lmenu -lmagic
 
-nsoundboard: main.c
-	$(CC) main.c -o nsoundboard $(CFLAGS)
+nsoundcursed: main.c
+	$(CC) main.c -o nsoundcursed $(CFLAGS)
 
-install : nsoundboard
-	install -m755 nsoundboard /usr/bin
-	mkdir -p /usr/share/nsoundboard
-	install -m644 nsoundboard.conf /usr/share/nsoundboard/nsoundboard.conf
+install : nsoundcursed
+	install -m755 nsoundcursed /usr/bin
+	mkdir -p /usr/share/nsoundcursed
+	install -m644 nsoundcursed.conf /usr/share/nsoundcursed/nsoundcursed.conf
+	mkdir -p /usr/share/locale/fr/LC_MESSAGES
+	install -m644 locale/fr/fr.mo /usr/share/locale/fr/LC_MESSAGES/nsoundcursed.mo
+

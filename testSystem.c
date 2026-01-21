@@ -21,8 +21,8 @@ int testSystem()
 		
 		if(cvlc != 0)
 		{
-			printf("Soit cvlc n'est pas disponible, soit il n'est pas présent dans le PATH.\n\
-Installer VLC avec votre gestionnaire de paquets peut résoudre le problème.\n") ;
+			printf(_("Either cvlc isn't available, either it's not in the PATH. \n\
+Installing VLC in your packet manager may solve the problem.")) ;
 			return -1 ;
 		}
 		return cvlc ;

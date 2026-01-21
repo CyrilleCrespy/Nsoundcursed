@@ -2,6 +2,8 @@
 // SPDX-License-Identifier: GPL-2.0-only
 // Copyright (C) 2025 Cyrille Crespy
 
+#define _(String) gettext (String)
+
 #include <limits.h>
 #include <curses.h>
 #include <menu.h>
@@ -11,7 +13,6 @@ int testSystem() ;
 void parseConfig(char *home) ;
 int lineAnalyzer(char varName[100], char value[250]) ;
 void configFromshare(char config[FILENAME_MAX]) ;
-void defaultConfig(char element) ;
 void menu() ;
 void eraseSound(int choices, int selected) ;
 void soundlist() ;
@@ -32,6 +33,8 @@ char folder[NAME_MAX + 1] ;
 ITEM **items ;
 WINDOW *win ;
 MENU *myMenu ;
+char *home ;
+char configFile[FILENAME_MAX] ;
 
 typedef struct
 {

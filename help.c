@@ -32,8 +32,8 @@ void help()
 void showHelp()
 {
 	clear() ;
-	mvprintw(1,2,"1) Premiers pas\n") ;
-	mvprintw(2,2,"2) Configuration\n") ;
+	mvprintw(1,2, _("1) First steps\n")) ;
+	mvprintw(2,2,_("2) Configuration\n")) ;
 
 	wrefresh(win) ;
 }
@@ -41,21 +41,19 @@ void showHelp()
 void firstSteps()
 {
 	clear() ;
-	printw("Le menu principal se pilote avec le pavé numérique (ou plus globalement les \
-chiffres qui juxtent les différentes possibilités. La liste de lecture \
-peut être pilotée avec les flèches directionnelles pour naviguer dans la liste, \
-ou avec les raccourcis claviers pour les choix numérotés de 1 à 9. 0 permet \
-de revenir au menu principal et 'q' de quitter l'application.") ;
+	printw(_("The main menu can be managed with numeric keyboard (or more generally with numbers \
+close the different choices. Playlist can be piloted from arrow keys to move the selected choice, \
+or with shortcuts for choices numeroted from 1 to 9. 0 allow to go back to the main menu, 'q' makes \
+the application quits.")) ;
 }
 
 void configureHowTo()
 {
 	clear() ;
-	printw("Le fichier situé dans ~/.config/nsoundlist/nsoundlist.conf sert de base à la configuration. \
-de l'outil. Le fichier repose sur un style simple : option=valeur. Il est lu à chaque \
-fois que l'application est lancée. \
-— folder définit le dossier de travail où sont cherchés les sons à lancer \
-1) default est traduit automatiquement par ~/.config/nsoundconfig, en récupérant \
-la valeur d'environnement $HOME du shell parent. Il peut aussi être défini \
-au chemin absolu d'un répertoire dont l'utilisateur a les droits de lecture.") ;
+	printw(_("The file located in ~/.config/nsoundlist.conf is the foundation of this tool. It relies \
+on a simple syntax : option=value. The application reads it at launch time. \
+- folder defines the working directory where sounds to launch are. \
+1) default is automatically translated into ~/.config/nsoundconfig, by retrieving \
+the $HOME value of the parent shell. \
+2) it can also be defined on which the user as reading rights.")) ;
 }

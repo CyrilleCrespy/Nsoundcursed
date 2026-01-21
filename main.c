@@ -12,6 +12,7 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <magic.h>
+#include <libintl.h>
 #include "testSystem.c"
 #include "configuration.c"
 #include "soundlist.c"
@@ -24,19 +25,32 @@ int main()
 	if (test != 0)
 	{
 		printf("%d \n", test) ;
-		printf("Fermeture de nsoundcursed : %s.\n", strerror(errno)) ;
+		printf(_("Nsoundcursed will be closed : ")) ;
+		printf("%s.\n", strerror(errno)) ;
 		return -1 ;
 	}
 	noecho() ;
 	cbreak() ;
 	initscr() ;
-	setlocale(LC_ALL, "fr_FR.UTF8") ;
+	
+	home = getenv("HOME") ;
+	if (home == NULL)
+	{
+		home = "/root" ;
+	}	
+	
+	parseConfig(home) ;
 	myMenu = new_menu((ITEM **)items) ;
-	win = newwin(LINES,COLS,0,0) ;
-	box(win,0,0) ;
+	win = newwin(LINES, COLS, 0, 0) ;
+	box(win, 0, 0) ;
 	noecho() ;
 	wrefresh(win) ;
 	keypad(stdscr, TRUE) ;
+	
+	setlocale (LC_ALL, "");
+	bindtextdomain ("nsoundcursed", "/usr/share/locale/");
+	textdomain ("nsoundcursed");
+		
 	menu() ;
 	return 0 ;	
 }
@@ -44,10 +58,10 @@ int main()
 void menu()
 {
 	clear() ;
-	mvprintw(1,3,"Bienvenue dans Nsoundcursed\n") ;
-	mvprintw(2,3,"1) Liste des sons\n") ;
-	mvprintw(3,3,"2) Aide\n") ;
-	mvprintw(4,3,"3) License\n") ;
+	mvprintw(1, 3, _("Welcome to Nsoundcursed\n")) ;
+	mvprintw(2, 3, _("1) Sound list\n")) ;
+	mvprintw(3, 3, _("2) Help me\n")) ;
+	mvprintw(4, 3, _("3) Licence\n")) ;
 
 	wrefresh(win) ;
 

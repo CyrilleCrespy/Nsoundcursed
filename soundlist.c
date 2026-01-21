@@ -8,15 +8,6 @@ void soundlist()
 	wrefresh(win) ;
 	keypad(stdscr, TRUE) ;
 
-	char *home = getenv("HOME") ;
-	if (home == NULL)
-	{
-		home = "/root" ;
-	}
-
-	parseConfig(home) ;
-	
-	//We default to the .config folder in the $HOME of the user.
 	if(strcmp(configuration.folder,"default") == 0)
 	{
 		snprintf(folder, sizeof(char) * FILENAME_MAX, "%s/.config/nsoundboard", home) ;
@@ -26,13 +17,14 @@ void soundlist()
 		snprintf(folder, sizeof(char) * FILENAME_MAX, "%s", configuration.folder) ;
 	}
 	
-	mvprintw(1,3,"Liste des sons (+ pour ajouter)\n") ;
-	mvprintw(2,3,"Répertoire analysé : %s\n", folder) ;
+	mvprintw(1, 3, _("Sound list (press + to add)\n")) ;
+	mvprintw(2, 3, _("Checked folder : \n")) ;
+	mvprintw(2, 3, "%s.\n", folder) ;
 
-        int i = -1 ;
+   int i = -1 ;
 	int nbFiles = 0 ;
-        DIR *dir ;
-        struct dirent *dir_s ;
+   DIR *dir ;
+   struct dirent *dir_s ;
 
 	dir = opendir(folder) ;
 
@@ -65,7 +57,8 @@ void soundlist()
         }
         else
         {
-                printw("Dossier %s introuvable ou inaccessible.\n", folder) ;
+                printw(_("Folder does not exist / is not reachable : ")) ;
+                printw("%s.\n", folder) ;
                 refresh() ;
         }
         closedir(dir) ;
@@ -92,7 +85,7 @@ int checkIfaudio(struct dirent *dir_s)
 	{
 		clear() ;
 		endwin() ;
-		printf("Loading the magic numbers failed.\n") ;
+		printf(_("Loading the magic number failed.\n")) ;
 		exit(0) ;
 	}
 	const char *type = magic_file(mime, file) ;
@@ -100,7 +93,8 @@ int checkIfaudio(struct dirent *dir_s)
 	{
 		clear() ;
 		endwin() ;
-		printf("Erreur, pas de mime MIME détecté pour %s.\n", file) ;
+		printf(_("No MIME type detected for the file : \n")) ;
+		printf("%s .", file) ;
 	}
 
 	// MIME-mimes are retrieved as strings such like audio/mpeg.

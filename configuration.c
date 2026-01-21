@@ -5,14 +5,15 @@
 void parseConfig(char *home)
 {
 	FILE *file = NULL ;
-	char config[FILENAME_MAX] ;
 	char buffer[256] ;
-	//config = malloc(sizeof(char) * FILENAME_MAX) ;
-	snprintf(config, sizeof(config) + sizeof(char) * 100, "%s/.config/nsoundboard/nsoundboard.conf", home) ;
-	file = fopen(config, "r") ;
+	snprintf(configFile, sizeof(configFile) + sizeof(char) * 100, "%s/.config/nsoundboard/nsoundboard.conf", home) ;
+	file = fopen(configFile, "r") ;
+
+	configuration.folder = malloc(sizeof(char) * FILENAME_MAX) ;
+
 	if(file == NULL)
 	{
-		configFromshare(config) ;
+		configFromshare(configFile) ;
 	}
 	fseek(file,0,SEEK_SET) ;
 
@@ -42,12 +43,7 @@ void parseConfig(char *home)
 
 int lineAnalyzer(char varName[100], char value[250])
 {
-	configuration.folder = malloc(sizeof(char) * 256) ;
-	if(strcmp(varName,"folder") == 0)
-	{
-		snprintf(configuration.folder, sizeof(char) * FILENAME_MAX, value) ;
-	}
-	else
+	if(strcmp(varName, "folder") == 0)
 	{
 		snprintf(configuration.folder, sizeof(char) * FILENAME_MAX, value) ;
 	}
@@ -68,10 +64,4 @@ void configFromshare(char config[FILENAME_MAX])
         }
         fclose(fichier1) ;
         fclose(fichier2) ;
-}
-
-void defaultConfig(char element) // In case the use is using the paramater default with any option,
-				 // we wanna use a state that was defined at compile time.
-				 // (compile time which also has default value, as you can see in Makefile)
-{
 }
