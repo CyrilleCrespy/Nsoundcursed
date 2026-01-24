@@ -28,11 +28,11 @@ msgstr "Bienvenue dans Nsoundcursed\n"
 
 #: main.c:61
 msgid "1) Sound list\n"
-msgstr "2) Liste de sons\n"
+msgstr "1) Liste de sons\n"
 
 #: main.c:62
 msgid "2) Help me\n"
-msgstr "3) Aide\n"
+msgstr "2) Aide\n"
 
 #: main.c:63
 msgid "3) Licence\n"
