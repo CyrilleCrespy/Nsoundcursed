@@ -16,6 +16,7 @@ void configFromshare(char config[FILENAME_MAX]) ;
 void menu() ;
 void eraseSound(int choices, int selected) ;
 void soundlist() ;
+void addSound() ;
 int checkIfaudio(struct dirent *dir_s) ;
 void soundlistLoop(int choices) ;
 void printSoundlist(int choices, int selected);
@@ -45,8 +46,10 @@ typedef struct
 	char back[1] ;
 	char quit[1] ;
 	char erase[1] ;
-	char playSound[20] ;
-	char language[20]
+	char *playSound ;
+	char *language ;
 } Configuration ;
+
+int compt = 0 ;
 
 Configuration configuration ;

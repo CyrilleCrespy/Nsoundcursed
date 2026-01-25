@@ -16,6 +16,9 @@ void parseConfig(char *home)
 		sleep(2) ;
 	}	
 	
+	configuration.language = malloc(sizeof(wchar_t) * 20) ;
+	configuration.language = "default" ;
+
 	snprintf(configFile, sizeof(configFile) + sizeof(char) * 100, "%s/.config/nsoundcursed/nsoundcursed.conf", home) ;
 	file = fopen(configFile, "r") ;
 
@@ -37,6 +40,11 @@ void parseConfig(char *home)
 
 		token = strtok(buffer, separator) ;
 		strncpy(varName, token, sizeof(varName) - 1) ;
+		
+		if (strcmp(varName, "") == 0)
+		{
+			continue ; //The line is empty, forget about it.
+		}
 
 		token = strtok(NULL, separator) ;
 		if (token == NULL) //The line does not contain an equal sign, thus the data is incorrect.
@@ -44,7 +52,7 @@ void parseConfig(char *home)
 			continue ;
 		}
 
-		strncpy(value, token, sizeof(value) - 1) ;
+		strncpy(value, token, sizeof(value) - 1) ;		
 		
 		lineAnalyzer(varName, value) ;
 	}
@@ -72,10 +80,13 @@ void lineAnalyzer(char varName[100], char value[FILENAME_MAX])
 	}
 	else if(strcmp(varName, "sound_shortcuts") == 0)
 	{
+		configuration.playSound = malloc (sizeof(wchar_t) * 20) ;
 		snprintf(configuration.playSound, sizeof(wchar_t) * 20, value) ;
 	}
 	else if(strcmp(varName, "language") == 0 && strcmp(value, "default") != 0)
 	{
+		configuration.language = malloc(sizeof(wchar_t) * 20) ;
+		memset(configuration.language, 0, sizeof(wchar_t) * 20) ;
 		snprintf(configuration.language, sizeof(wchar_t) * 20, value) ;
 	}
 }

@@ -17,6 +17,7 @@
 #include "testSystem.c"
 #include "configuration.c"
 #include "soundlist.c"
+#include "addSound.c"
 #include "help.c"
 #include "license.c"
 
@@ -48,13 +49,13 @@ int main()
 	wrefresh(win) ;
 	keypad(stdscr, TRUE) ;
 	
-	if (strcmp(configuration.language, "default") != 0)
-	{
-		setlocale (LC_ALL, configuration.language) ;
+	if (strcmp(configuration.language, "default") == 0)
+	{	
+		setlocale (LC_ALL, "");
 	}
 	else 
 	{
-		setlocale (LC_ALL, "");
+		setlocale (LC_ALL, configuration.language) ;
 	}
 	bindtextdomain ("nsoundcursed", "/usr/share/locale/");
 	textdomain ("nsoundcursed");

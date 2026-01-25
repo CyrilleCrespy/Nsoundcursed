@@ -151,6 +151,12 @@ void soundlistLoop(int choices)
 		{
 				playSound(selected - 1) ;
 		}
+		else if (ch == '+')
+		{
+			endwin() ;
+			clear() ;
+			addSound() ;
+		}
 		else if (ch == configuration.back[0]) // Return to main menu
 		{
 			endwin() ;
