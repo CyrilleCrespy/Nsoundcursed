@@ -151,19 +151,19 @@ void soundlistLoop(int choices)
 		{
 				playSound(selected - 1) ;
 		}
-		else if (ch == configuration.back) // Return to main menu
+		else if (ch == configuration.back[0]) // Return to main menu
 		{
 			endwin() ;
 			clear() ;
 			menu() ;
 		}
-		else if (ch == configuration.quit)
+		else if (ch == configuration.quit[0])
 		{
 			clear() ;
 			endwin() ;
 			exit(0) ;
 		}
-		else if (ch == configuration.erase)
+		else if (ch == configuration.erase[0])
 		{
 				eraseSound(choices, selected) ;
 		}
@@ -176,14 +176,7 @@ void soundlistLoop(int choices)
 				playSound(i) ;
 			}
 		}
-		printSoundlist(choices, selected) ;
-		
-		{
-			mvprintw(15, 2, "%d", configuration.playSound[1]) ;
-			mvprintw(16, 2, "%d", ch) ;
-			wrefresh(win) ;
-		}
-			
+		printSoundlist(choices, selected) ;	
 	}
 }
 
@@ -239,8 +232,8 @@ void playSound(int selected)
 void eraseSound(int choices, int selected)
 {
 	char *file ;
-	file = malloc(sizeof(folder)+sizeof(files[selected])) ;
-	sprintf(file, "%s/%s", folder, files[selected]) ;
+	file = malloc(sizeof(folder)+sizeof(files[selected - 1])) ;
+	sprintf(file, "%s/%s", folder, files[selected - 1]) ;
 	remove(file) ;
 	attroff(A_BOLD | A_UNDERLINE | A_DIM | A_REVERSE) ;
 	soundlist() ;

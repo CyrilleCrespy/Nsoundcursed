@@ -10,7 +10,7 @@ It is possible to read the text in its full extent by consulting the file COPYIN
 when sharing this software, either as binary or as source code. Press any key to go back to main menu.")) ;
 	wrefresh(win) ;
 	int ch = getch() ;
-	if (ch == configuration.quit)
+	if (ch == configuration.quit[0])
 	{
 				clear() ;
 				endwin() ;

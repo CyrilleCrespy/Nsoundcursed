@@ -69,24 +69,24 @@ void menu()
 	{
 		int ch = getch() ;
 
-		switch(ch)
+		if (ch == '1')
 		{
-			case '1':
-				soundlist() ;
-				break ;
-			case '2':
-				help() ;
-				break ;
-			case '3':
-				license() ;
-				break ;
-			case 'configuration.quit' :
-				clear() ;
-				endwin() ;
-				exit(0) ;
-				break ;
+			soundlist() ;
+		}
+		else if (ch == '2')
+		{
+			help() ;
+		}
+		else if (ch == '3')
+		{
+			license() ;
+		}
+		else if (ch == configuration.quit[0])
+		{
+			clear() ;
+			endwin() ;
+			exit(0) ;
 		}
 	}
-
 	endwin() ;
 }

@@ -42,10 +42,10 @@ char configFile[FILENAME_MAX] ;
 typedef struct
 {
 	char *folder ;
+	char back[1] ;
+	char quit[1] ;
+	char erase[1] ;
 	char playSound[20] ;
-	char back ;
-	char quit ;
-	char erase ;
 } Configuration ;
 
 Configuration configuration ;

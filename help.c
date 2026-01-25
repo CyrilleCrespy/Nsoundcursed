@@ -9,7 +9,7 @@ void help()
 	{
 		int ch = getch() ;
 
-		if (ch == configuration.quit)
+		if (ch == configuration.quit[0])
 		{
 				clear() ;
 				endwin() ;

@@ -10,7 +10,7 @@ void parseConfig(char *home)
 	file = fopen(configFile, "r") ;
 
 	configuration.folder = malloc(sizeof(char) * FILENAME_MAX) ;
-	
+
 	if(file == NULL)
 	{
 		configFromshare(configFile) ;
@@ -45,23 +45,23 @@ void lineAnalyzer(char varName[100], char value[FILENAME_MAX])
 {
 	if(strcmp(varName, "folder") == 0)
 	{
-		snprintf(configuration.folder, sizeof(char) * FILENAME_MAX, value) ;
+		snprintf(configuration.folder, sizeof(wchar_t) * FILENAME_MAX, value) ;
 	}
-	if(strcmp(varName, "back") == 0)
+	else if(strcmp(varName, "back") == 0)
 	{
-		snprintf(&configuration.back, sizeof(char), value) ;
+		snprintf(configuration.back, sizeof(wchar_t), value) ;
 	}
-	if(strcmp(varName, "quit") == 0)
+	else if(strcmp(varName, "quit") == 0)
 	{
-		snprintf(&configuration.quit, sizeof(char), value) ;
+		snprintf(configuration.quit, sizeof(wchar_t), value) ;
 	}
-	if(strcmp(varName, "erase") == 0)
+	else if(strcmp(varName, "erase") == 0)
 	{
-		snprintf(&configuration.erase, sizeof(char), value) ;
+		snprintf(configuration.erase, sizeof(wchar_t), value) ;
 	}
-	if(strcmp(varName, "sound_shortcuts") == 0)
+	else if(strcmp(varName, "sound_shortcuts") == 0)
 	{
-		snprintf(configuration.playSound, sizeof(char) * 20, value) ;
+		snprintf(configuration.playSound, sizeof(wchar_t) * 24, value) ;
 	}
 }
 
