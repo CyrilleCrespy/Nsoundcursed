@@ -13,6 +13,7 @@
 #include <fcntl.h>
 #include <magic.h>
 #include <libintl.h>
+#include <sys/stat.h>
 #include "testSystem.c"
 #include "configuration.c"
 #include "soundlist.c"

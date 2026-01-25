@@ -6,6 +6,16 @@ void parseConfig(char *home)
 {
 	FILE *file = NULL ;
 	char buffer[256] ;
+	char folder[256] ;
+	struct stat st = {0} ;
+	snprintf(folder, sizeof(char) * 256, "%s/.config/nsoundcursed", home) ;
+
+	if (stat(folder, &st) == -1)
+	{
+		mkdir(folder, 0755) ;
+		sleep(2) ;
+	}	
+	
 	snprintf(configFile, sizeof(configFile) + sizeof(char) * 100, "%s/.config/nsoundcursed/nsoundcursed.conf", home) ;
 	file = fopen(configFile, "r") ;
 
@@ -14,8 +24,9 @@ void parseConfig(char *home)
 	if(file == NULL)
 	{
 		configFromshare(configFile) ;
+		file = fopen(configFile, "r") ;
 	}
-	fseek(file,0,SEEK_SET) ;
+	fseek(file, 0, SEEK_SET) ;
 
 	while (fgets(buffer, sizeof(buffer), file))
 	{
@@ -75,7 +86,7 @@ void configFromshare(char config[FILENAME_MAX])
         char ch ;
 
         fichier1 = fopen("/usr/share/nsoundcursed/nsoundcursed.conf", "r") ;
-        fichier2 = fopen(config, "w+") ;
+        fichier2 = fopen(config, "w") ;
     
         while((ch = getc(fichier1)) != EOF)
         {
