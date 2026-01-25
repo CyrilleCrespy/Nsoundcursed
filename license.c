@@ -9,6 +9,12 @@ void license()
 It is possible to read the text in its full extent by consulting the file COPYING, which must be provided \
 when sharing this software, either as binary or as source code. Press any key to go back to main menu.")) ;
 	wrefresh(win) ;
-	getch() ;
+	int ch = getch() ;
+	if (ch == configuration.quit)
+	{
+				clear() ;
+				endwin() ;
+				exit(0) ;
+	}
 	menu() ;
 }

@@ -80,7 +80,7 @@ void menu()
 			case '3':
 				license() ;
 				break ;
-			case 'q':
+			case 'configuration.quit' :
 				clear() ;
 				endwin() ;
 				exit(0) ;

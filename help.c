@@ -9,6 +9,13 @@ void help()
 	{
 		int ch = getch() ;
 
+		if (ch == configuration.quit)
+		{
+				clear() ;
+				endwin() ;
+				exit(0) ;
+		}
+
 		switch(ch)
 		{
 			case '1':
@@ -16,11 +23,6 @@ void help()
 				break ;
 			case '2':
 				configureHowTo() ;
-				break ;
-			case 'q':
-				clear() ;
-				endwin() ;
-				exit(0) ;
 				break ;
 			default:
 				menu() ;

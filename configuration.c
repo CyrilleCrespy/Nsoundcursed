@@ -6,11 +6,11 @@ void parseConfig(char *home)
 {
 	FILE *file = NULL ;
 	char buffer[256] ;
-	snprintf(configFile, sizeof(configFile) + sizeof(char) * 100, "%s/.config/nsoundboard/nsoundboard.conf", home) ;
+	snprintf(configFile, sizeof(configFile) + sizeof(char) * 100, "%s/.config/nsoundcursed/nsoundcursed.conf", home) ;
 	file = fopen(configFile, "r") ;
 
 	configuration.folder = malloc(sizeof(char) * FILENAME_MAX) ;
-
+	
 	if(file == NULL)
 	{
 		configFromshare(configFile) ;
@@ -20,7 +20,7 @@ void parseConfig(char *home)
 	while (fgets(buffer, sizeof(buffer), file))
 	{
 		char varName[100] ;
-		char value[250] ;
+		char value[FILENAME_MAX] ;
 		const char  *separator = "=\n" ;
 		char *token ;
 
@@ -41,13 +41,28 @@ void parseConfig(char *home)
 	fclose(file) ; 
 }
 
-int lineAnalyzer(char varName[100], char value[250])
+void lineAnalyzer(char varName[100], char value[FILENAME_MAX])
 {
 	if(strcmp(varName, "folder") == 0)
 	{
 		snprintf(configuration.folder, sizeof(char) * FILENAME_MAX, value) ;
 	}
-	return 0 ;
+	if(strcmp(varName, "back") == 0)
+	{
+		snprintf(&configuration.back, sizeof(char), value) ;
+	}
+	if(strcmp(varName, "quit") == 0)
+	{
+		snprintf(&configuration.quit, sizeof(char), value) ;
+	}
+	if(strcmp(varName, "erase") == 0)
+	{
+		snprintf(&configuration.erase, sizeof(char), value) ;
+	}
+	if(strcmp(varName, "sound_shortcuts") == 0)
+	{
+		snprintf(configuration.playSound, sizeof(char) * 20, value) ;
+	}
 }
 
 void configFromshare(char config[FILENAME_MAX])
@@ -55,7 +70,7 @@ void configFromshare(char config[FILENAME_MAX])
         FILE *fichier1, *fichier2 = NULL ;
         char ch ;
 
-        fichier1 = fopen("/usr/share/nsoundboard/nsoundboard.conf", "r") ;
+        fichier1 = fopen("/usr/share/nsoundcursed/nsoundcursed.conf", "r") ;
         fichier2 = fopen(config, "w+") ;
     
         while((ch = getc(fichier1)) != EOF)

@@ -10,7 +10,7 @@ void soundlist()
 
 	if(strcmp(configuration.folder,"default") == 0)
 	{
-		snprintf(folder, sizeof(char) * FILENAME_MAX, "%s/.config/nsoundboard", home) ;
+		snprintf(folder, sizeof(char) * FILENAME_MAX, "%s/.config/nsoundcursed", home) ;
 	}
 	else
 	{
@@ -42,7 +42,7 @@ void soundlist()
 				if (isAudio == 0) 
 				{
 					items = malloc(sizeof(files[nbFiles])) ;
-                               		items[nbFiles] = new_item(files[nbFiles],files[nbFiles]) ;
+                               	items[nbFiles] = new_item(files[nbFiles],files[nbFiles]) ;
                                 	snprintf(files[nbFiles],sizeof(files[nbFiles]),dir_s->d_name) ;
                                 	i ++ ;
 					nbFiles ++ ;
@@ -74,8 +74,8 @@ void soundlist()
 
 int checkIfaudio(struct dirent *dir_s)
 {
-	//We check what is the magic number of a file to determine its mime.
-	//Then, we can decide wether to print it on the list or not.
+	// We check what is the magic number of a file to determine its mime.
+	// Then, we can decide wether to print it on the list or not.
 	char *file ;
 	file = malloc(sizeof(folder) + sizeof(dir_s->d_name) + sizeof(char)) ;
 	snprintf(file, sizeof(folder) + sizeof(dir_s->d_name) + sizeof(char), "%s/%s", folder, dir_s->d_name) ;
@@ -125,10 +125,9 @@ void soundlistLoop(int choices)
 	{
 		ch = getch() ;
 
-		switch(ch)
+		if (ch == KEY_UP)
 		{
-			case KEY_UP :
-				if (selected == 1)
+			if (selected == 1)
 				{
 					selected = choices ;
 				}
@@ -136,62 +135,55 @@ void soundlistLoop(int choices)
 				{
 					selected -- ;
 				}
-				break ;
-			case KEY_DOWN :
-				if (selected == choices)
-				{
-					selected = 1 ;
-				}
-				else
-				{
-					selected ++ ;
-				}
-				break ;
-			case '1' :
-				playSound(1) ;
-				break ;
-			case '2' :
-				playSound(2) ;
-				break ;
-			case '3' :
-				playSound(3) ;
-				break ;
-			case '4' :
-				playSound(4) ;
-				break ;
-			case '5' :
-				playSound(5) ;
-				break ;
-			case '6' :
-				playSound(6) ;
-				break ;
-			case '7' :
-				playSound(7) ;
-				break ;
-			case '8' :
-				playSound(8) ;
-				break ;
-			case '9' :
-				playSound(9) ;
-				break ;
-			case 10 : //Enter key
-				playSound(selected) ;
-				break ;
-			case '0' :
-				endwin() ;
-				clear() ;
-				menu() ;
-				break ;
-			case 'q' :
-				clear() ;
-				endwin() ;
-				exit(0) ;
-				break ;
-			case 'e' :
+		}
+		else if (ch == KEY_DOWN)
+		{
+			if (selected == choices)
+			{
+				selected = 1 ;
+			}
+			else
+			{
+				selected ++ ;
+			}
+		}		
+		else if (ch == 10) // Enter key
+		{
+				playSound(selected - 1) ;
+		}
+		else if (ch == configuration.back) // Return to main menu
+		{
+			endwin() ;
+			clear() ;
+			menu() ;
+		}
+		else if (ch == configuration.quit)
+		{
+			clear() ;
+			endwin() ;
+			exit(0) ;
+		}
+		else if (ch == configuration.erase)
+		{
 				eraseSound(choices, selected) ;
-				break ;
+		}
+		
+		int i ;
+		for (i = 0 ; i < 20 ; i++)
+		{
+			if (ch == configuration.playSound[i])
+			{
+				playSound(i) ;
+			}
 		}
 		printSoundlist(choices, selected) ;
+		
+		{
+			mvprintw(15, 2, "%d", configuration.playSound[1]) ;
+			mvprintw(16, 2, "%d", ch) ;
+			wrefresh(win) ;
+		}
+			
 	}
 }
 
@@ -199,7 +191,7 @@ void printSoundlist(int choices, int selected)
 {
 	int i = 1 ;
 
-	while (i < choices)
+	while (i <= choices)
 	{
 		move(i + 2,0) ;
 		clrtoeol() ;
@@ -213,7 +205,7 @@ void printSoundlist(int choices, int selected)
 			attroff(A_BOLD | A_UNDERLINE | A_DIM | A_REVERSE) ;
 			mvprintw(i + 2, 3, "%d) %s", i, files[i - 1]) ;
 		}
-		//The first lines are taken permanently so we need to draw the menu starting after that.
+		// The first lines are taken permanently so we need to draw the menu starting after that.
 		refresh() ;
 		i ++ ;
 	}
@@ -231,23 +223,24 @@ void playSound(int selected)
 	}
 	else if (proc == 0)
 	{
-		file = malloc(sizeof(folder) + sizeof(files[selected - 1]) + 1) ;
-		sprintf(file, "%s/%s", folder, files[selected - 1]) ;
+		file = malloc(sizeof(folder) + sizeof(files[selected]) + 1) ;
+		snprintf(file, 65792, "%s/%s", folder, files[selected]) ;
 	
 		int out = open("/dev/null", O_RDWR);
 		dup2(out, 0) ;
 		dup2(out, 1) ;
 		dup2(out, 2) ;
 		close(out) ;
-		execlp("cvlc", "cvlc", file, "--no-loop", "--quiet", NULL) ;	
+		execlp("cvlc", "clvc", file, "--no-loop", "--play-and-exit", NULL) ;
+		exit(0) ;
 	}
 }
 
 void eraseSound(int choices, int selected)
 {
 	char *file ;
-	file = malloc(sizeof(folder)+sizeof(files[selected - 1])) ;
-	sprintf(file, "%s/%s", folder, files[selected - 1]) ;
+	file = malloc(sizeof(folder)+sizeof(files[selected])) ;
+	sprintf(file, "%s/%s", folder, files[selected]) ;
 	remove(file) ;
 	attroff(A_BOLD | A_UNDERLINE | A_DIM | A_REVERSE) ;
 	soundlist() ;
