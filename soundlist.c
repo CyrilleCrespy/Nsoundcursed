@@ -42,9 +42,9 @@ void soundlist()
 				if (isAudio == 0) 
 				{
 					items = malloc(sizeof(files[nbFiles])) ;
-                               	items[nbFiles] = new_item(files[nbFiles],files[nbFiles]) ;
-                                	snprintf(files[nbFiles],sizeof(files[nbFiles]),dir_s->d_name) ;
-                                	i ++ ;
+               items[nbFiles] = new_item(files[nbFiles], files[nbFiles]) ;
+               snprintf(files[nbFiles], sizeof(files[nbFiles]), "%s", dir_s->d_name) ;
+               i ++ ;
 					nbFiles ++ ;
 				}
 				else

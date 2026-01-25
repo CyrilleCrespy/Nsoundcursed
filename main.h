@@ -46,6 +46,7 @@ typedef struct
 	char quit[1] ;
 	char erase[1] ;
 	char playSound[20] ;
+	char language[20]
 } Configuration ;
 
 Configuration configuration ;

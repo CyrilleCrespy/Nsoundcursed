@@ -61,7 +61,11 @@ void lineAnalyzer(char varName[100], char value[FILENAME_MAX])
 	}
 	else if(strcmp(varName, "sound_shortcuts") == 0)
 	{
-		snprintf(configuration.playSound, sizeof(wchar_t) * 24, value) ;
+		snprintf(configuration.playSound, sizeof(wchar_t) * 20, value) ;
+	}
+	else if(strcmp(varName, "language") == 0 && strcmp(value, "default") != 0)
+	{
+		snprintf(configuration.language, sizeof(wchar_t) * 20, value) ;
 	}
 }
 

@@ -47,7 +47,14 @@ int main()
 	wrefresh(win) ;
 	keypad(stdscr, TRUE) ;
 	
-	setlocale (LC_ALL, "");
+	if (strcmp(configuration.language, "default") != 0)
+	{
+		setlocale (LC_ALL, configuration.language) ;
+	}
+	else 
+	{
+		setlocale (LC_ALL, "");
+	}
 	bindtextdomain ("nsoundcursed", "/usr/share/locale/");
 	textdomain ("nsoundcursed");
 		
