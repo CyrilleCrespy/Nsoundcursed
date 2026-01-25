@@ -214,7 +214,8 @@ void playSound(int selected)
 	{
 		printf("Fork failed : %s.\n", strerror(errno)) ;
 	}
-	else if (proc == 0)
+	else if (proc == 0 && strcmp(files[selected], "") != 0) // The file associated with the shortcut does not exist.
+	// We do not want to launch cvlc or we would tell it to play every single audio file that it can read.
 	{
 		file = malloc(sizeof(folder) + sizeof(files[selected]) + 1) ;
 		snprintf(file, 65792, "%s/%s", folder, files[selected]) ;
