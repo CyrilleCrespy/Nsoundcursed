@@ -3,6 +3,7 @@ CFLAGS=-Wall -Werror=all -pedantic -O3 -g -lcurses -lmenu -lmagic
 
 nsoundcursed: main.c
 	$(CC) main.c -o nsoundcursed $(CFLAGS)
+	msgfmt --output-file=locale/fr/fr.mo locale/fr/fr.po
 
 install : nsoundcursed
 	install -m755 nsoundcursed /usr/bin
