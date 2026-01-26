@@ -93,16 +93,16 @@ void lineAnalyzer(char varName[100], char value[FILENAME_MAX])
 
 void configFromshare(char config[FILENAME_MAX])
 {
-        FILE *fichier1, *fichier2 = NULL ;
+        FILE *file1, *file2 = NULL ;
         char ch ;
 
-        fichier1 = fopen("/usr/share/nsoundcursed/nsoundcursed.conf", "r") ;
-        fichier2 = fopen(config, "w") ;
+        file1 = fopen("/usr/share/nsoundcursed/nsoundcursed.conf", "r") ;
+        file2 = fopen(config, "w") ;
     
-        while((ch = getc(fichier1)) != EOF)
+        while((ch = getc(file1)) != EOF)
         {
-                putc(ch, fichier2) ;
+                putc(ch, file2) ;
         }
-        fclose(fichier1) ;
-        fclose(fichier2) ;
+        fclose(file1) ;
+        fclose(file2) ;
 }

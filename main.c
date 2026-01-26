@@ -14,6 +14,7 @@
 #include <magic.h>
 #include <libintl.h>
 #include <sys/stat.h>
+#include <libgen.h>
 #include "testSystem.c"
 #include "configuration.c"
 #include "soundlist.c"

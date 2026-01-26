@@ -8,7 +8,7 @@ void soundlist()
 	wrefresh(win) ;
 	keypad(stdscr, TRUE) ;
 
-	if(strcmp(configuration.folder,"default") == 0)
+	if(strcmp(configuration.folder, "default") == 0)
 	{
 		snprintf(folder, sizeof(char) * FILENAME_MAX, "%s/.config/nsoundcursed", home) ;
 	}
@@ -28,33 +28,36 @@ void soundlist()
 
 	dir = opendir(folder) ;
 
-   	if (dir)
-      {
-			while ((dir_s = readdir(dir)) != NULL)
+   if (dir)
+   {
+		while ((dir_s = readdir(dir)) != NULL)
+		{
+			if (i <= 0) //Ignore . and ..
 			{
-				if (i <= 0) //Ignore . and ..
+           	i ++ ;
+         }
+         else
+         {
+				char *file ;
+				file = malloc(sizeof(folder) + sizeof(dir_s->d_name) + sizeof(char)) ;
+				snprintf(file, sizeof(folder) + sizeof(dir_s->d_name) + sizeof(char), "%s/%s", folder, dir_s->d_name) ;
+            int isAudio = checkIfaudio(file) ;
+				if (isAudio == 0) 
 				{
-            	i ++ ;
-            }
-           	else
-            {
-            	int isAudio = checkIfaudio(dir_s) ;
-					if (isAudio == 0) 
-					{
-						items = malloc(sizeof(files[nbFiles])) ;
-               	items[nbFiles] = new_item(files[nbFiles], files[nbFiles]) ;
-               	snprintf(files[nbFiles], sizeof(files[nbFiles]), "%s", dir_s->d_name) ;
-               	i ++ ;
-						nbFiles ++ ;
-					}
-					else
-					{
-						i++ ;
-						continue ;
-					}
-            }
-			}
+					items = malloc(sizeof(files[nbFiles])) ;
+               items[nbFiles] = new_item(files[nbFiles], files[nbFiles]) ;
+               snprintf(files[nbFiles], sizeof(files[nbFiles]), "%s", dir_s->d_name) ;
+               i ++ ;
+					nbFiles ++ ;
+				}
+				else
+				{
+					i++ ;
+					continue ;
+				}
+         }
 		}
+	}
       else
       {
       	printw(_("Folder does not exist / is not reachable : ")) ;
@@ -72,13 +75,10 @@ void soundlist()
 	getch() ;
 }
 
-int checkIfaudio(struct dirent *dir_s)
+int checkIfaudio(char *file)
 {
 	// We check what is the magic number of a file to determine its mime.
 	// Then, we can decide wether to print it on the list or not.
-	char *file ;
-	file = malloc(sizeof(folder) + sizeof(dir_s->d_name) + sizeof(char)) ;
-	snprintf(file, sizeof(folder) + sizeof(dir_s->d_name) + sizeof(char), "%s/%s", folder, dir_s->d_name) ;
 	magic_t mime = magic_open(MAGIC_MIME_TYPE) ;
 	int isLoadOK = magic_load(mime, NULL) ;
 	if (isLoadOK != 0)
