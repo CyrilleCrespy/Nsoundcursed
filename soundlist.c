@@ -28,40 +28,40 @@ void soundlist()
 
 	dir = opendir(folder) ;
 
-        if (dir)
-        {
-                while ((dir_s = readdir(dir)) != NULL)
-                {
-                        if (i <= 0) //Ignore . and ..
-                        {
-                                i ++ ;
-                        }
-                        else
-                        {
-                                int isAudio = checkIfaudio(dir_s) ;
-				if (isAudio == 0) 
+   	if (dir)
+      {
+			while ((dir_s = readdir(dir)) != NULL)
+			{
+				if (i <= 0) //Ignore . and ..
 				{
-					items = malloc(sizeof(files[nbFiles])) ;
-               items[nbFiles] = new_item(files[nbFiles], files[nbFiles]) ;
-               snprintf(files[nbFiles], sizeof(files[nbFiles]), "%s", dir_s->d_name) ;
-               i ++ ;
-					nbFiles ++ ;
-				}
-				else
-				{
-					i++ ;
-					continue ;
-				}
-                        }
-                }
-        }
-        else
-        {
-                printw(_("Folder does not exist / is not reachable : ")) ;
-                printw("%s.\n", folder) ;
-                refresh() ;
-        }
-        closedir(dir) ;
+            	i ++ ;
+            }
+           	else
+            {
+            	int isAudio = checkIfaudio(dir_s) ;
+					if (isAudio == 0) 
+					{
+						items = malloc(sizeof(files[nbFiles])) ;
+               	items[nbFiles] = new_item(files[nbFiles], files[nbFiles]) ;
+               	snprintf(files[nbFiles], sizeof(files[nbFiles]), "%s", dir_s->d_name) ;
+               	i ++ ;
+						nbFiles ++ ;
+					}
+					else
+					{
+						i++ ;
+						continue ;
+					}
+            }
+			}
+		}
+      else
+      {
+      	printw(_("Folder does not exist / is not reachable : ")) ;
+         printw("%s.\n", folder) ;
+         refresh() ;
+      }
+      closedir(dir) ;
 
 
 	printSoundlist(nbFiles,1) ;
