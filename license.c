@@ -1,6 +1,6 @@
 // Nsoundcursed, sound alert manager for Ncurses
 // SPDX-License-Identifier: GPL-2.0-only
-// Copyright (C) 2025 Cyrille Crespy
+// Copyright (C) 2026 Cyrille Crespy
 
 void license()
 {

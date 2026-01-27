@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Nsoundcursed\n"
-"Report-Msgid-Bugs-To: cyrille_crespy@hotmail.com\n"
-"POT-Creation-Date: 2026-01-21 10:08+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-01-27 13:04+0100\n"
 "PO-Revision-Date: 2026-01-20 16:33+0100\n"
 "Last-Translator:  <cyrille_crespy@hotmail.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -17,107 +17,127 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: main.c:28
+#: main.c:31
 #, c-format
 msgid "Nsoundcursed will be closed : "
 msgstr "Fermeture de Nsoundcursed : "
 
-#: main.c:60
+#: main.c:71
 msgid "Welcome to Nsoundcursed\n"
 msgstr "Bienvenue dans Nsoundcursed\n"
 
-#: main.c:61
+#: main.c:72
 msgid "1) Sound list\n"
 msgstr "1) Liste de sons\n"
 
-#: main.c:62
+#: main.c:73
 msgid "2) Help me\n"
 msgstr "2) Aide\n"
 
-#: main.c:63
+#: main.c:74
 msgid "3) Licence\n"
 msgstr "3) License\n"
 
-#: help.c:35
+#: help.c:37
 msgid "1) First steps\n"
 msgstr "1) Premiers pas\n"
 
-#: help.c:36
+#: help.c:38
 msgid "2) Configuration\n"
 msgstr "2) Configuration\n"
 
-#: help.c:44
+#: help.c:46
 msgid ""
 "The main menu can be managed with numeric keyboard (or more generally with "
 "numbers close the different choices. Playlist can be piloted from arrow keys "
 "to move the selected choice, or with shortcuts for choices numeroted from 1 "
 "to 9. 0 allow to go back to the main menu, 'q' makes the application quits."
-msgstr "Le menu principal se pilote avec le pavé numérique (ou plus globalement les \
-chiffres qui juxtent les différentes possibilités. La liste de lecture "
-"peut être pilotée avec les flèches directionnelles pour naviguer dans la liste, "
+msgstr ""
+"Le menu principal se pilote avec le pavé numérique (ou plus globalement les "
+"chiffres qui juxtent les différentes possibilités. La liste de lecture peut "
+"être pilotée avec les flèches directionnelles pour naviguer dans la liste, "
 "ou avec les raccourcis claviers pour les choix numérotés de 1 à 9. 0 permet "
 "de revenir au menu principal et 'q' de quitter l'application."
 
-#: help.c:53
-msgid 
+#: help.c:55
+msgid ""
 "The file located in ~/.config/nsoundlist.conf is the foundation of this "
 "tool. It relies on a simple syntax : option=value. The application reads it "
 "at launch time. - folder defines the working directory where sounds to "
 "launch are. 1) default is automatically translated into ~/.config/"
 "nsoundconfig, by retrieving the $HOME value of the parent shell. 2) it can "
 "also be defined on which the user as reading rights."
-msgstr "Le fichier situé dans ~/.config/nsoundlist/nsoundlist.conf sert de base à la configuration." 
-"de l'outil. Le fichier repose sur un style simple : option=valeur. Il est lu à chaque "
-"fois que l'application est lancée. "
-"— folder définit le dossier de travail où sont cherchés les sons à lancer "
-"1) default est traduit automatiquement par ~/.config/nsoundconfig, en récupérant "
-"la valeur d'environnement $HOME du shell parent. Il peut aussi être défini "
-"au chemin absolu d'un répertoire dont l'utilisateur a les droits de lecture."
+msgstr ""
+"Le fichier situé dans ~/.config/nsoundlist/nsoundlist.conf sert de base à la "
+"configuration.de l'outil. Le fichier repose sur un style simple : "
+"option=valeur. Il est lu à chaque fois que l'application est lancée. — "
+"folder définit le dossier de travail où sont cherchés les sons à lancer 1) "
+"default est traduit automatiquement par ~/.config/nsoundconfig, en "
+"récupérant la valeur d'environnement $HOME du shell parent. Il peut aussi "
+"être défini au chemin absolu d'un répertoire dont l'utilisateur a les droits "
+"de lecture."
 
 #: license.c:8
-msgid 
+msgid ""
 "Licence GPLv2.0, and only thio particular version, applies to this "
 "application. It is possible to read the text in its full extent by "
 "consulting the file COPYING, which must be provided when sharing this "
 "software, either as binary or as source code. Press any key to go back to "
 "main menu."
-msgstr "Cette application est soumise à la licence GPLv2.0 et uniquement à cette version. "
-"Il est possible de consulter le texte en consultant le fichier COPYING, qui doit être fourni "
-"lors de la transmission de ce logiciel, que ce soit sous forme binaire ou en code source. "
-"Pressez une touche pour revenir au menu."
+msgstr ""
+"Cette application est soumise à la licence GPLv2.0 et uniquement à cette "
+"version. Il est possible de consulter le texte en consultant le fichier "
+"COPYING, qui doit être fourni lors de la transmission de ce logiciel, que ce "
+"soit sous forme binaire ou en code source. Pressez une touche pour revenir "
+"au menu."
 
 #: soundlist.c:20
 msgid "Sound list (press + to add)\n"
 msgstr "Liste de sons (appuyez sur + pour ajouter)\n"
 
 #: soundlist.c:21
-msgid "Checked folder : "
+#, fuzzy
+msgid "Checked folder : \n"
 msgstr "Répertoire analysé : "
 
-#: soundlist.c:59
+#: soundlist.c:63
 msgid "Folder does not exist / is not reachable : "
 msgstr "Dossier introuvable ou inaccessible : "
 
-#: soundlist.c:86
+#: soundlist.c:88
 #, c-format
 msgid "Loading the magic number failed.\n"
 msgstr "Chargement des nombres magiques impossible.\n"
 
-#: soundlist.c:94
+#: soundlist.c:96
 #, c-format
 msgid "No MIME type detected for the file : \n"
 msgstr "Aucun type de fichier détecté : \n"
 
 #: testSystem.c:24
 #, c-format
-msgid "a"
-msgstr "Soit cvlc n'est pas disponible, soit il n'est pas présent dans le PATH.\n "
-"Installer VLC avec votre gestionnaire de paquets peut résoudre le problème."
+msgid ""
+"Either cvlc isn't available, either it's not in the PATH. \n"
+"Installing VLC in your packet manager may solve the problem."
+msgstr ""
+"Soit cvlc n'est pas disponible, soit il n'est pas présent dans le PATH.\n"
+" Installer VLC avec votre gestionnaire de paquets peut résoudre le "
+"problème."
 
-#~ msgid "b"
-#~ msgstr ""
-#~ "Cette application est soumise à la licence GPLv2.0 et uniquement à cette "
-#~ "version. Il est possible de consulter le texte en consultant le fichier "
-#~ "COPYING, qui doit être fourni lors de la transmission de ce logiciel, que "
-#~ "ce soit sous forme binaire ou en code source. Pressez une touche pour "
-#~ "revenir au menu."
+#: addSound.c:9
+msgid ""
+"Type (or paste) the absolute path of the file you want to add, or the "
+"directory whose audio files you want to copy in the nsoundcursed "
+"configuration.\n"
+msgstr ""
+"Entrez (ou collez) le chemin absolu du fichier que vous voulez ajouter, "
+"ou du répertoire dont vous voulez ajouter les fichiers audios "
+"dans la configuration de nsoundcursed"
+
+#: addSound.c:23
+msgid "Error using stat on the required file or directory : "
+msgstr "Erreur lors de l'utilisation de stat sur le fichier ou le répertoire : "
+
+#: addSound.c:69
+msgid "The file is NOT a regular file.\n"
+msgstr "Le fichier n'est PAS un fichier régulier.\n"

@@ -1,14 +1,16 @@
-# Nsoundcursed, sound alert manager for Ncurses
-# SPDX-License-Identifier: GPL-2.0-only
-# Copyright (C) 2025 Cyrille Crespy
+# French translations for Nsoundcursed package
+# Traductions françaises du paquet Nsoundcursed.
+# Copyright Cyrille Crespy (C) 2026
+# This file is distributed under the same license as the Nsoundcursed package.
+# FIRST AUTHOR <cyrille_crespy@hotmail.com>, 2026.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Nsoundcursed\n"
-"Report-Msgid-Bugs-To: cyrille_crespy@hotmail.com\n"
-"POT-Creation-Date: 2026-01-21 10:08+0100\n"
-"PO-Revision-Date: 2026-01-21 10:30+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-01-27 13:04+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Cyrille Crespy <cyrille_crespy@hotmail.com>\n"
 "Language-Team: Cyrille Crespy <cyrille_crespy@hotmail.com>\n"
 "Language: \n"
@@ -16,36 +18,36 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: main.c:28
+#: main.c:31
 #, c-format
 msgid "Nsoundcursed will be closed : "
 msgstr ""
 
-#: main.c:60
+#: main.c:71
 msgid "Welcome to Nsoundcursed\n"
 msgstr ""
 
-#: main.c:61
+#: main.c:72
 msgid "1) Sound list\n"
 msgstr ""
 
-#: main.c:62
+#: main.c:73
 msgid "2) Help me\n"
 msgstr ""
 
-#: main.c:63
+#: main.c:74
 msgid "3) Licence\n"
 msgstr ""
 
-#: help.c:35
+#: help.c:37
 msgid "1) First steps\n"
 msgstr ""
 
-#: help.c:36
+#: help.c:38
 msgid "2) Configuration\n"
 msgstr ""
 
-#: help.c:44
+#: help.c:46
 msgid ""
 "The main menu can be managed with numeric keyboard (or more generally with "
 "numbers close the different choices. Playlist can be piloted from arrow keys "
@@ -53,7 +55,7 @@ msgid ""
 "to 9. 0 allow to go back to the main menu, 'q' makes the application quits."
 msgstr ""
 
-#: help.c:53
+#: help.c:55
 msgid ""
 "The file located in ~/.config/nsoundlist.conf is the foundation of this "
 "tool. It relies on a simple syntax : option=value. The application reads it "
@@ -65,9 +67,11 @@ msgstr ""
 
 #: license.c:8
 msgid ""
-"Licence GPLv2.0, and only thio particular version, applies to this application. "
-"It is possible to read the text in its full extent by consulting the file COPYING, which must be provided "
-"when sharing this software, either as binary or as source code. Press any key to go back to main menu."
+"Licence GPLv2.0, and only thio particular version, applies to this "
+"application. It is possible to read the text in its full extent by "
+"consulting the file COPYING, which must be provided when sharing this "
+"software, either as binary or as source code. Press any key to go back to "
+"main menu."
 msgstr ""
 
 #: soundlist.c:20
@@ -75,25 +79,41 @@ msgid "Sound list (press + to add)\n"
 msgstr ""
 
 #: soundlist.c:21
-msgid "Checked folder : "
+msgid "Checked folder : \n"
 msgstr ""
 
-#: soundlist.c:59
+#: soundlist.c:63
 msgid "Folder does not exist / is not reachable : "
 msgstr ""
 
-#: soundlist.c:86
+#: soundlist.c:88
 #, c-format
 msgid "Loading the magic number failed.\n"
 msgstr ""
 
-#: soundlist.c:94
+#: soundlist.c:96
 #, c-format
 msgid "No MIME type detected for the file : \n"
 msgstr ""
 
 #: testSystem.c:24
 #, c-format
-msgid "Either cvlc isn't available, either it's not in the PATH. \n"
+msgid ""
+"Either cvlc isn't available, either it's not in the PATH. \n"
 "Installing VLC in your packet manager may solve the problem."
+msgstr ""
+
+#: addSound.c:9
+msgid ""
+"Type (or paste) the absolute path of the file you want to add, or the "
+"directory whose audio files you want to copy in the nsoundcursed "
+"configuration.\n"
+msgstr ""
+
+#: addSound.c:23
+msgid "Error using stat on the required file or directory : "
+msgstr ""
+
+#: addSound.c:69
+msgid "The file is NOT a regular file.\n"
 msgstr ""
