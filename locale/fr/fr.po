@@ -132,7 +132,7 @@ msgid ""
 msgstr ""
 "Entrez (ou collez) le chemin absolu du fichier que vous voulez ajouter, "
 "ou du répertoire dont vous voulez ajouter les fichiers audios "
-"dans la configuration de nsoundcursed"
+"dans la configuration de nsoundcursed.\n"
 
 #: addSound.c:23
 msgid "Error using stat on the required file or directory : "
