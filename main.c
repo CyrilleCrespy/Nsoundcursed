@@ -15,6 +15,7 @@
 #include <libintl.h>
 #include <sys/stat.h>
 #include <libgen.h>
+#include <wchar.h>
 #include "testSystem.c"
 #include "configuration.c"
 #include "soundlist.c"
@@ -42,6 +43,7 @@ int main()
 		home = "/root" ;
 	}	
 	
+	setlocale (LC_ALL, "") ; // We need a temporary locale to be determined, so we can parse correctly the config file.
 	parseConfig(home) ;
 	myMenu = new_menu((ITEM **)items) ;
 	win = newwin(LINES, COLS, 0, 0) ;
@@ -50,13 +52,16 @@ int main()
 	wrefresh(win) ;
 	keypad(stdscr, TRUE) ;
 	
-	if (strcmp(configuration.language, "default") == 0)
+	if (wcscmp(configuration.language, L"default") == 0)
 	{	
-		setlocale (LC_ALL, "");
+		setlocale (LC_ALL, "") ;
 	}
 	else 
 	{
-		setlocale (LC_ALL, configuration.language) ;
+		char *language ;
+		language = malloc(sizeof(wchar_t) * FILENAME_MAX) ;
+		wcstombs(language, configuration.language, sizeof(language)) ;
+		setlocale (LC_ALL, language) ;
 	}
 	bindtextdomain ("nsoundcursed", "/usr/share/locale/");
 	textdomain ("nsoundcursed");

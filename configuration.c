@@ -5,7 +5,7 @@
 void parseConfig(char *home)
 {
 	FILE *file = NULL ;
-	char buffer[256] ;
+	wchar_t buffer[256] ;
 	char folder[256] ;
 	struct stat st = {0} ;
 	snprintf(folder, sizeof(char) * 256, "%s/.config/nsoundcursed", home) ;
@@ -17,7 +17,7 @@ void parseConfig(char *home)
 	}	
 	
 	configuration.language = malloc(sizeof(wchar_t) * 20) ;
-	configuration.language = "default" ;
+	configuration.language = L"default" ;
 
 	snprintf(configFile, sizeof(configFile) + sizeof(char) * 100, "%s/.config/nsoundcursed/nsoundcursed.conf", home) ;
 	file = fopen(configFile, "r") ;
@@ -31,28 +31,32 @@ void parseConfig(char *home)
 	}
 	fseek(file, 0, SEEK_SET) ;
 
-	while (fgets(buffer, sizeof(buffer), file))
+	while (fgetws(buffer, sizeof(buffer), file))
 	{
-		char varName[100] ;
-		char value[FILENAME_MAX] ;
-		const char  *separator = "=\n" ;
-		char *token ;
+		wchar_t *varName ;
+		wchar_t *value ;
+		const wchar_t  *separator = L"=\n" ;
+		wchar_t *ptr ;
+		wchar_t *token ;
 
-		token = strtok(buffer, separator) ;
-		strncpy(varName, token, sizeof(varName) - 1) ;
+		varName = malloc(sizeof(wchar_t) * FILENAME_MAX) ;
+		value = malloc(sizeof(wchar_t) * FILENAME_MAX) ;
+		token = wcstok(buffer, separator, &ptr) ;
+		wcsncpy(varName, token, sizeof(varName)) ;
 		
-		if (strcmp(varName, "") == 0)
+		if (wcscmp(varName, L"") == 0)
 		{
 			continue ; //The line is empty, forget about it.
 		}
 
-		token = strtok(NULL, separator) ;
+		token = wcstok(NULL, separator, &ptr) ;		
+		
 		if (token == NULL) //The line does not contain an equal sign, thus the data is incorrect.
 		{
 			continue ;
 		}
-
-		strncpy(value, token, sizeof(value) - 1) ;		
+				
+		wcscpy(value, token) ;
 		
 		lineAnalyzer(varName, value) ;
 	}
@@ -60,34 +64,35 @@ void parseConfig(char *home)
 	fclose(file) ; 
 }
 
-void lineAnalyzer(char varName[100], char value[FILENAME_MAX])
+void lineAnalyzer(wchar_t *varName, wchar_t *value)
 {
-	if(strcmp(varName, "folder") == 0)
+	if(wcscmp(varName, L"folder") == 0)
 	{
-		snprintf(configuration.folder, sizeof(wchar_t) * FILENAME_MAX, value) ;
+		swprintf(configuration.folder, sizeof(wchar_t) * FILENAME_MAX, value) ;
 	}
-	else if(strcmp(varName, "back") == 0)
+	else if(wcscmp(varName, L"back") == 0)
 	{
-		snprintf(configuration.back, sizeof(wchar_t), value) ;
+		swprintf(configuration.back, sizeof(wchar_t), value) ;
 	}
-	else if(strcmp(varName, "quit") == 0)
+	else if(wcscmp(varName, L"quit") == 0)
 	{
-		snprintf(configuration.quit, sizeof(wchar_t), value) ;
+		swprintf(configuration.quit, sizeof(wchar_t), value) ;
 	}
-	else if(strcmp(varName, "erase") == 0)
+	else if(wcscmp(varName, L"erase") == 0)
 	{
-		snprintf(configuration.erase, sizeof(wchar_t), value) ;
+		swprintf(configuration.erase, sizeof(wchar_t), value) ;
 	}
-	else if(strcmp(varName, "sound_shortcuts") == 0)
+	else if(wcscmp(varName, L"play") == 0)
 	{
-		configuration.playSound = malloc (sizeof(wchar_t) * 20) ;
-		snprintf(configuration.playSound, sizeof(wchar_t) * 20, value) ;
+		configuration.playSound = malloc(sizeof(wchar_t) * 100) ;
+		memset(configuration.playSound, 0, sizeof(wchar_t) * 100) ;
+		swprintf(configuration.playSound, sizeof(wchar_t) * 100, value) ;
 	}
-	else if(strcmp(varName, "language") == 0 && strcmp(value, "default") != 0)
+	else if(wcscmp(varName, L"language") == 0 && wcscmp(value, L"default") != 0)
 	{
 		configuration.language = malloc(sizeof(wchar_t) * 20) ;
 		memset(configuration.language, 0, sizeof(wchar_t) * 20) ;
-		snprintf(configuration.language, sizeof(wchar_t) * 20, value) ;
+		swprintf(configuration.language, sizeof(wchar_t) * 20, value) ;
 	}
 }
 

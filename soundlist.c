@@ -8,13 +8,13 @@ void soundlist()
 	wrefresh(win) ;
 	keypad(stdscr, TRUE) ;
 
-	if(strcmp(configuration.folder, "default") == 0)
+	if(wcscmp(configuration.folder, L"default") == 0)
 	{
 		snprintf(folder, sizeof(char) * FILENAME_MAX, "%s/.config/nsoundcursed", home) ;
 	}
 	else
 	{
-		snprintf(folder, sizeof(char) * FILENAME_MAX, "%s", configuration.folder) ;
+		snprintf(folder, sizeof(char) * FILENAME_MAX, "%ls", configuration.folder) ;
 	}
 	
 	mvprintw(1, 3, _("Sound list (press + to add)\n")) ;
@@ -192,17 +192,17 @@ void printSoundlist(int choices, int selected)
 
 	while (i <= choices)
 	{
-		move(i + 2,0) ;
+		move(i + 2, 0) ;
 		clrtoeol() ;
 		if(i == selected) //Make the current selected choice visible.
 		{
 			attron(A_BOLD | A_UNDERLINE | A_DIM | A_REVERSE) ;
-			mvprintw(i + 2, 3, "%d) %s Erase (e)", i, files[i - 1]) ;
+			mvprintw(i + 2, 3, "%lc) %s Erase (e)", configuration.playSound[i - 1], files[i - 1]) ;
 		}
 		else
 		{
 			attroff(A_BOLD | A_UNDERLINE | A_DIM | A_REVERSE) ;
-			mvprintw(i + 2, 3, "%d) %s", i, files[i - 1]) ;
+			mvprintw(i + 2, 3, "%lc) %s", configuration.playSound[i - 1], files[i - 1]) ;
 		}
 		// The first lines are taken permanently so we need to draw the menu starting after that.
 		refresh() ;

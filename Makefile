@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-Wall -Werror=all -pedantic -O3 -g -lcurses -lmenu -lmagic
+CFLAGS=-Wall -Werror=all -pedantic -O3 -g -lncursesw -lmenu -lmagic
 
 nsoundcursed: main.c
 	$(CC) main.c -o nsoundcursed $(CFLAGS)
